@@ -10,118 +10,34 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/css/uikit.min.css"
+    />
   </head>
   <body>
-    <div class="container">
-      <div class="chat_header">
-        <p>Da click en cualquier nombre para enviarle un mensaje</p>
-        <button class="button-4" role="button">Crear grupo</button>
+    <div id="modal-full" class="uk-modal-full" uk-modal>
+      <div class="uk-modal-dialog">
+          <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+              <div class="uk-background-cover" style="background-color: #c5ddeb" uk-height-viewport></div>
+              <div class="uk-padding-large">
+                  <h1>Chat</h1>
+                  <p>Hola!, bienvenido a la aplicacion de chat. Ingresa tu nombre</p>
+                  <div class="uk-margin">
+                    <input id="input-name" class="uk-input" type="text" placeholder="Nombre">
+                  </div>
+              </div>
+          </div>
       </div>
-      <div class="chat_body">
-        <div class="chat_messages">
-          <div class="chat_messages-wrapper">
-            <div class="message-header">
-              <span class="chat-with">Chat with all</span>
-            </div>
-            <div class="messages">
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="to">
-                <div class="message-data align-right">
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  <span class="user">Nombre</span>
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="to">
-                <div class="message-data align-right">
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  <span class="user">Nombre</span>
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-            </div>
-            <div class="controls">
-              <input placeholder="Enter message" />
-              <button class="button-4">Enviar</button>
-            </div>
-          </div>
-        </div>
-        <div class="chat_messages">
-          <div class="chat_messages-wrapper">
-            <div class="message-header">
-              <span class="chat-with">Chat with Eduardo</span>
-            </div>
-            <div class="messages">
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="to">
-                <div class="message-data align-right">
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  <span class="user">Nombre</span>
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="from">
-                <div class="message-data">
-                  <span class="user">Nombre</span>
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-              <div class="to">
-                <div class="message-data align-right">
-                  <span class="date-time">10:10AM, Today</span> &nbsp; &nbsp;
-                  <span class="user">Nombre</span>
-                </div>
-                <div class="message-body">Hola?</div>
-              </div>
-            </div>
-            <div class="controls">
-              <input placeholder="Enter message" />
-              <button class="button-4">Enviar</button>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div id="chat-container" class="uk-container uk-width-1-1 uk-padding-remove uk-margin-remove hidden">
+      <div class="userdata uk-text-center">
+        <span class="uk-margin-small-right" uk-icon="user"></span>
+        <span id="username">Lalo</span>
+      </div>
+      <div class="chat_body uk-width-1-1">
         <div class="chat_names">
-          <div class="title">People</div>
+          <div class="title uk-text-bold">People</div>
           <ul class="name-list">
             <li>Nombre</li>
             <li>Nombre</li>
@@ -132,11 +48,85 @@
             <li>Nombre</li>
             <li>Nombre</li>
             <li>Nombre</li>
+            <li>Nombre</li>
+            <li>Nombre</li>
+            <li>Nombre</li>
+            <li>Nombre</li>
+            <li>Nombre</li>
+          </ul>
+          <div class="title uk-text-bold">Groups</div>
+          <ul class="group-list">
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
+            <li>Group</li>
           </ul>
         </div>
+        <div class="chat_messages">
+          <div class="chat_messages-wrapper">
+            <div class="message-header">
+              <span class="chat-with">Chat with Eduardo</span>
+            </div>
+            <div class="messages">
+              <div class="from">
+                <div class="message-data uk-text-small">
+                  <span class="user">Nombre</span>
+                  <span class="date-time">10:10AM, Today</span> &nbsp;
+                </div>
+                <div class="message-body">Hola?</div>
+              </div>
+              <div class="from">
+                <div class="message-data uk-text-small">
+                  <span class="user">Nombre</span>
+                  <span class="date-time">10:10AM, Today</span> &nbsp;
+                </div>
+                <div class="message-body">Hola?</div>
+              </div>
+              <div class="to">
+                <div class="message-data uk-text-small align-right">
+                  <span class="date-time">10:10AM, Today</span> &nbsp;
+                  <span class="user">Nombre</span>
+                </div>
+                <div class="message-body">Hola?</div>
+              </div>
+              <div class="from">
+                <div class="message-data uk-text-small">
+                  <span class="user">Nombre</span>
+                  <span class="date-time">10:10AM, Today</span> &nbsp;
+                </div>
+                <div class="message-body">Hola?</div>
+              </div>
+              <div class="to">
+                <div class="message-data uk-text-small align-right">
+                  <span class="date-time">10:10AM, Today</span> &nbsp;
+                  <span class="user">Nombre</span>
+                </div>
+                <div class="message-body">Hola?</div>
+              </div>
+            </div>
+            <div class="controls">
+              <input placeholder="Enter message" />
+              <button class="uk-button uk-button-default">Enviar</button>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit-icons.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/js/user.js"></script>
   <script src="/static/js/chat.js"></script>
 </html>
