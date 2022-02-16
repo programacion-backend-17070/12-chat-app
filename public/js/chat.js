@@ -1,3 +1,4 @@
+// obtenemos todos los elementos de la UI que vamos a manipular
 const modalEl = document.getElementById("modal-full")
 const inputNameEl = document.getElementById("input-name")
 const chatContainerEl = document.getElementById("chat-container")
@@ -7,21 +8,43 @@ const msgPool = document.getElementById("message-pool")
 const usrList = document.getElementById("user-list")
 const groupList = document.getElementById("group-list")
 
+const user = {}
+const users = []
+
+// Utilizamos el modal de UI para iniciar 
+// el usuario debe de ingresar su nombre para poder utilizarlo
 UIkit.modal(modalEl).show();
+
+// escuchar el evento cuando el modal se cierra y ejecutar la logica inicial
 UIkit.util.on("#modal-full", "hidden", () => {
+
+  // mostamos el contenedor del chat que estaba escondido
   chatContainerEl.classList.toggle("hidden")
   document.getElementById("username").innerText = user.name
   msgPool.innerHTML = null
+
+  // conectar con socket io
   user.socket = io()
 
+  // escuchar diferentes eventos
+
+  // enviamos nuestro nombre de usuario al server para que los demas nos conozcan
   user.socket.emit("iam", user.name)
+
+  // escuchar la lista de usuarios conectados actualmente
   user.socket.on("users", renderUser)
+
+  // escuchar cuando un usuario se ha desconectado
   user.socket.on("offline", deleteUser)
+
+  // escuchar cuando un nuevo mensaje ha sido recibido
   user.socket.on("message", render)
 
+  // resetar la lista de usuarios, poniendo siempre al inicio al usuario de la app
   resetUserList()
 })
 
+// callback para enviar mensaje cuando damos click  en el boton
 sendBtn.addEventListener("click", (e) => {
   e.preventDefault()
   if (!messageInput.value) {
@@ -35,11 +58,13 @@ sendBtn.addEventListener("click", (e) => {
     destination: ""
   }
 
+  // enviamos el mensaje y renderizamos el mismo en la lista de mensajes
   user.socket.emit("message", message)
   render(message)
   messageInput.value = null
 })
 
+// callback para saber cuando el usuario ha ingresado su nombre y cerrar el modal
 inputNameEl.addEventListener("keyup", (e) => {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -52,6 +77,8 @@ inputNameEl.addEventListener("keyup", (e) => {
   }
 })
 
+// rendizar un mensaje
+// distinguiendo entre mensaje enviado o mensaje recibido
 function render(data) {
   const msgElement = document.createElement("div")
   const userEl = `<span class="user">${data.user}</span>`
@@ -67,6 +94,7 @@ function render(data) {
   msgPool.appendChild(msgElement)
 }
 
+// renderizar un usuario en la lista
 function renderUser(u) {
   if (u.name == user.name) {
     return
@@ -78,11 +106,14 @@ function renderUser(u) {
   usrList.appendChild(liEl)
 }
 
+// borrar un usuario de la lista
 function deleteUser(id) {
   resetUserList()
   users.filter(u => u.id !== id).forEach(renderUser)
 }
 
+
+// inicializar la lista de usuarios
 function resetUserList() {
   usrList.innerHTML = null
 
