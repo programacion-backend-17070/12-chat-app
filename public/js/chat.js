@@ -92,6 +92,7 @@ function render(data) {
     <div class="message-body">${data.message}</div>
   `
   msgPool.appendChild(msgElement)
+  msgPool.scrollTop = msgPool.scrollHeight
 }
 
 // renderizar un usuario en la lista
