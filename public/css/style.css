@@ -78,6 +78,7 @@ body div.uk-container {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .chat_messages-wrapper .messages .message-data {
