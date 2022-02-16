@@ -70,13 +70,13 @@ function render(data) {
   const userEl = `<span class="user">${data.user}</span>`
   const timeEl = `<span class="date-time">${new Date(data.date).toLocaleString()}</span> &nbsp;`
   const cssClass = data.user == user.name ? "local" : "remote"
+  msgElement.classList.add(cssClass)
   msgElement.innerHTML = `
     <div class="message-data uk-text-small ${cssClass === "local" ? "align-right" : ""}">
       ${cssClass === "local" ? userEl + timeEl : timeEl + userEl}
     </div>
     <div class="message-body">${data.message}</div>
   `
-
   msgPool.appendChild(msgElement)
   msgPool.scrollTop = msgPool.scrollHeight // scroll hasta abajo
 }

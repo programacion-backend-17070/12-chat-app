@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
 
   socket.on("message", (data) => {
     console.log(data)
-    msg.push(data)
+    msg.push(data) // agregamos el mensaje a la base de datos (array :P)
     // retransmitir mensaje
     socket.broadcast.emit("message", data)
   })
