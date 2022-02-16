@@ -38,7 +38,7 @@
       <div class="chat_body uk-width-1-1">
         <div class="chat_names">
           <div class="title uk-text-bold">People</div>
-          <ul class="name-list">
+          <ul id="user-list" class="name-list">
             <li>Nombre</li>
             <li>Nombre</li>
             <li>Nombre</li>
@@ -55,7 +55,7 @@
             <li>Nombre</li>
           </ul>
           <div class="title uk-text-bold">Groups</div>
-          <ul class="group-list">
+          <ul id="group-list" class="group-list">
             <li>Group</li>
             <li>Group</li>
             <li>Group</li>
@@ -77,36 +77,36 @@
             <div class="message-header">
               <span class="chat-with">Chat with Eduardo</span>
             </div>
-            <div class="messages">
-              <div class="from">
+            <div id="message-pool" class="messages">
+              <div class="remote">
                 <div class="message-data uk-text-small">
                   <span class="user">Nombre</span>
                   <span class="date-time">10:10AM, Today</span> &nbsp;
                 </div>
                 <div class="message-body">Hola?</div>
               </div>
-              <div class="from">
+              <div class="remote">
                 <div class="message-data uk-text-small">
                   <span class="user">Nombre</span>
                   <span class="date-time">10:10AM, Today</span> &nbsp;
                 </div>
                 <div class="message-body">Hola?</div>
               </div>
-              <div class="to">
+              <div class="local">
                 <div class="message-data uk-text-small align-right">
                   <span class="date-time">10:10AM, Today</span> &nbsp;
                   <span class="user">Nombre</span>
                 </div>
                 <div class="message-body">Hola?</div>
               </div>
-              <div class="from">
+              <div class="remote">
                 <div class="message-data uk-text-small">
                   <span class="user">Nombre</span>
                   <span class="date-time">10:10AM, Today</span> &nbsp;
                 </div>
                 <div class="message-body">Hola?</div>
               </div>
-              <div class="to">
+              <div class="local">
                 <div class="message-data uk-text-small align-right">
                   <span class="date-time">10:10AM, Today</span> &nbsp;
                   <span class="user">Nombre</span>
@@ -115,8 +115,8 @@
               </div>
             </div>
             <div class="controls">
-              <input placeholder="Enter message" />
-              <button class="uk-button uk-button-default">Enviar</button>
+              <input id="message-input" placeholder="Enter message" />
+              <button id="send-btn" class="uk-button uk-button-default">Enviar</button>
             </div>
           </div>
         </div>

@@ -102,12 +102,12 @@ body div.uk-container {
   background: #86bb71;
 }
 
-.chat_messages-wrapper .messages .to .message-body {
+.chat_messages-wrapper .messages .local .message-body {
   background: #94c2ed;
   float: right;
 }
 
-.chat_messages-wrapper .messages .to .message-body:after {
+.chat_messages-wrapper .messages .local .message-body:after {
   border-bottom-color: #94c2ed;
   left: 85%;
 }

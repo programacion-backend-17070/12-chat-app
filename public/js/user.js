@@ -1,2 +1,2 @@
-const user = {
-}
+const user = {}
+const users = []
