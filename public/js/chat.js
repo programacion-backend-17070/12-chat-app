@@ -1,9 +1,11 @@
 // obtenemos todos los elementos de la UI que vamos a manipular
 const modalEl = document.getElementById("modal-full")
 const inputNameEl = document.getElementById("input-name")
+const inputEmailEl = document.getElementById("input-email")
 const chatContainerEl = document.getElementById("chat-container")
 const messageInput = document.getElementById("message-input")
 const sendBtn = document.getElementById("send-btn")
+const enterBtn = document.getElementById("enter-btn")
 const msgPool = document.getElementById("message-pool")
 const usrList = document.getElementById("user-list")
 const groupList = document.getElementById("group-list")
@@ -40,6 +42,22 @@ UIkit.util.on("#modal-full", "hidden", () => {
   // escuchar cuando un nuevo mensaje ha sido recibido
   user.socket.on("message", render)
 
+  user.socket.on("messages", (data) => {
+    const author = new normalizr.schema.Entity("authors", {}, { idAttribute: "email" })
+    const mensaje = new normalizr.schema.Entity("mensajes", {
+      author: author
+    })
+
+    const schemaMensajes = new normalizr.schema.Entity("data", {
+      mensajes: [mensaje]
+    })
+
+    const denormalzedData = normalizr.denormalize("mensajes", schemaMensajes, data.entities) 
+    console.log(denormalzedData.mensajes)
+
+    denormalzedData.mensajes.forEach(m => render2(m))
+  })
+
   // resetar la lista de usuarios, poniendo siempre al inicio al usuario de la app
   resetUserList()
 })
@@ -52,29 +70,36 @@ sendBtn.addEventListener("click", (e) => {
   }
 
   const message = {
-    message: messageInput.value,
-    date: Date.now(),
-    user: user.name,
-    destination: ""
+    author: {
+      email: user.email,
+      name: user.name
+    },
+    text: messageInput.value,
+    date: Date.now()
   }
+
+  console.log(message)
 
   // enviamos el mensaje y renderizamos el mismo en la lista de mensajes
   user.socket.emit("message", message)
-  render(message)
+
+  // render(message)
   messageInput.value = null
 })
 
 // callback para saber cuando el usuario ha ingresado su nombre y cerrar el modal
-inputNameEl.addEventListener("keyup", (e) => {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    if (!e.target.value) {
-      return
-    }
-
-    user.name = e.target.value
-    UIkit.modal(modalEl).hide();
+enterBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const email = inputEmailEl.value
+  const name = inputNameEl.value
+  if (!email || !name) {
+    return
   }
+
+  user.name = name
+  user.email = email
+  console.log(user)
+  UIkit.modal(modalEl).hide();
 })
 
 // rendizar un mensaje
@@ -90,6 +115,22 @@ function render(data) {
       ${cssClass === "local" ? userEl + timeEl : timeEl + userEl}
     </div>
     <div class="message-body">${data.message}</div>
+  `
+  msgPool.appendChild(msgElement)
+  msgPool.scrollTop = msgPool.scrollHeight
+}
+
+function render2(data) {
+  const msgElement = document.createElement("div")
+  const userEl = `<span class="user">${data.author.name}</span>`
+  const timeEl = `<span class="date-time">${new Date(data.date).toLocaleString()}</span> &nbsp;`
+  const cssClass = data.author.name == user.name ? "local" : "remote"
+  msgElement.classList.add(cssClass)
+  msgElement.innerHTML = `
+    <div class="message-data uk-text-small ${cssClass === "local" ? "align-right" : ""}">
+      ${cssClass === "local" ? userEl + timeEl : timeEl + userEl}
+    </div>
+    <div class="message-body">${data.text}</div>
   `
   msgPool.appendChild(msgElement)
   msgPool.scrollTop = msgPool.scrollHeight

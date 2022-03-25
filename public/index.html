@@ -24,7 +24,9 @@
                   <h1>Chat</h1>
                   <p>Hola!, bienvenido a la aplicacion de chat. Ingresa tu nombre</p>
                   <div class="uk-margin">
+                    <input id="input-email" class="uk-input" type="text" placeholder="Email">
                     <input id="input-name" class="uk-input" type="text" placeholder="Nombre">
+                    <button id="enter-btn" class="uk-button uk-button-default">Entrar</button>
                   </div>
               </div>
           </div>
@@ -126,6 +128,8 @@
   </body>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit-icons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.browser.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/static/js/chat.js"></script>
 </html>
