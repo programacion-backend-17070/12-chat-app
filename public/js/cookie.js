@@ -1,6 +1,3 @@
-// const userNameEl = document.getElementById("username")
-// console.log(document.cookie)
-
 const cookiesEl = document.getElementById("cookies")
 
 function cookieParser() {
@@ -10,10 +7,3 @@ function cookieParser() {
     return obj
   }, {})
 }
-
-const cookies = cookieParser()
-
-cookiesEl.innerHTML = JSON.stringify(cookies)
-
-
-
