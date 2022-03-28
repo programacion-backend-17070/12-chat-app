@@ -7,3 +7,7 @@ function cookieParser() {
     return obj
   }, {})
 }
+
+const cookies = cookieParser()
+
+cookiesEl.innerHTML = JSON.stringify(cookies)
