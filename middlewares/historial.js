@@ -11,4 +11,14 @@ module.exports = (req, res, next) => {
   // crear una ruta en la api /api/visitas que regrese ese numero del contador
 
   // bonus llamar ese contador en el frontend con fetch
+
+  if (!req.session.contador) {
+    req.session.contador = 1
+  } else {
+    req.session.contador++
+  }
+
+  console.log(req.session.contador)
+  next()
+
 }

@@ -3,7 +3,11 @@ const { Router } = require('express');
 const router = new Router();
 
 // ruta para las visitas
+// /api/visitas
+router.get("/visitas", (req, res) => {
+  const { contador } = req.session
 
-api.get("/visitas", (req, res) => res.send("OK"))
+  res.send({ contador })
+})
 
 module.exports = router
