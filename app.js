@@ -5,6 +5,7 @@
   const mongoose = require("mongoose")
   const { Server } = require('socket.io');
   const cookieParser = require("cookie-parser")
+  const session = require("express-session")
 
   const templateEngine = require('./engine')
   const { mongoConfig } = require("./config")
@@ -26,6 +27,11 @@
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
     app.use(cookieParser("secreto"))
+    app.use(session({
+      secret: "SECRETO",
+      resave: true,
+      saveUninitialized: true
+    }))
     app.use("/static", express.static(path.join(__dirname, 'public')))
     app.use("/", viewRouter)
     app.use("/api", apiRouter)
