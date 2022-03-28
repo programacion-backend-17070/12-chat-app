@@ -4,14 +4,14 @@
   const http = require('http')
   const mongoose = require("mongoose")
   const { Server } = require('socket.io');
-  // const cookieParser = require("cookie-parser")
+  const cookieParser = require("cookie-parser")
 
   const templateEngine = require('./engine')
   const { mongoConfig } = require("./config")
   const chat = require("./chat")
 
   const viewRouter = require("./routers/view")
-  // const apiRouter = require("./routers/api")
+  const apiRouter = require("./routers/api")
 
   const { HOSTNAME, SCHEMA, DATABASE, USER, PASSWORD, OPTIONS } = mongoConfig
   const app = express()
@@ -25,10 +25,10 @@
     
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
-    // app.use(cookieParser("secreto"))
+    app.use(cookieParser("secreto"))
     app.use("/static", express.static(path.join(__dirname, 'public')))
     app.use("/", viewRouter)
-    // app.use("/api", apiRouter)
+    app.use("/api", apiRouter)
     
     io.on("connection", chat)
     server.listen(8080, () => console.log(`listening on http://localhost:8080`))

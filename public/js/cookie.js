@@ -11,9 +11,9 @@ function cookieParser() {
   }, {})
 }
 
-// const cookies = cookieParser()
+const cookies = cookieParser()
 
-// cookiesEl.innerHTML = JSON.stringify(cookies)
+cookiesEl.innerHTML = JSON.stringify(cookies)
 
 
 
