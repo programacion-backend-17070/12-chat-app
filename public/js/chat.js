@@ -15,12 +15,10 @@ const users = []
 // Utilizamos el modal de UI para iniciar 
 // el usuario debe de ingresar su nombre para poder utilizarlo
 
-
 // escuchar el evento cuando el modal se cierra y ejecutar la logica inicial
 UIkit.util.on("#modal-full", "hidden", () => {
 
   // mostamos el contenedor del chat que estaba escondido
-  chatContainerEl.classList.toggle("hidden")
   document.getElementById("username").innerText = user.name
   msgPool.innerHTML = null
 
@@ -85,21 +83,6 @@ sendBtn.addEventListener("click", (e) => {
   // render(message)
   messageInput.value = null
 })
-
-// callback para saber cuando el usuario ha ingresado su nombre y cerrar el modal
-// enterBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   const email = inputEmailEl.value
-//   const name = inputNameEl.value
-//   if (!email || !name) {
-//     return
-//   }
-
-//   user.name = name
-//   user.email = email
-//   console.log(user)
-//   UIkit.modal(modalEl).hide();
-// })
 
 // rendizar un mensaje
 // distinguiendo entre mensaje enviado o mensaje recibido

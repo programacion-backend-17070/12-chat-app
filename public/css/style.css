@@ -9,6 +9,10 @@ html {
   padding: 0;
 }
 
+body {
+  height: 100vh;
+}
+
 body div.uk-container {
   display: flex;
   flex-direction: column;
