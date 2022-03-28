@@ -7,5 +7,3 @@ function cookieParser() {
     return obj
   }, {})
 }
-
-
