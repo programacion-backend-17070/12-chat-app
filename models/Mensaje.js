@@ -1,10 +1,9 @@
 const { Schema, model } = require("mongoose")
 const faker = require("faker")
-const { schema, normalize } = require("normalizr")
 
 class Mensaje {
   constructor() {
-    const mensajesSchema = new Schema({
+    const schema = new Schema({
       author: {
         email: String,
         name: String,
@@ -15,7 +14,7 @@ class Mensaje {
       text: String
     })
 
-    this.model = model("mensajes", mensajesSchema)
+    this.model = model("mensajes", schema)
   }
 
   async saveMessage(message) {
@@ -23,31 +22,15 @@ class Mensaje {
   }
 
   async readMessages() {
-    const author = new schema.Entity("authors", {}, { idAttribute: "email" })
-    const mensaje = new schema.Entity("mensajes", {
-      author: author
+    const data = await this.model.find({})
+
+    return data.map((d) => {
+      return {
+        author: d.author,
+        text: d.text,
+        id: d._id.toString()
+      }
     })
-
-    const data = new schema.Entity("data", {
-      mensajes: [mensaje]
-    })
-
-    const mensajesEnDB = await this.model.find({})
-
-    const normalizedData = normalize({
-      id: "mensajes",
-      mensajes: mensajesEnDB.map((d) => {
-        return {
-          author: d.author,
-          text: d.text,
-          id: d._id.toString()
-        }
-      })
-    }, data)
-
-    console.log(normalizedData)
-
-    return normalizedData
   }
 }
 

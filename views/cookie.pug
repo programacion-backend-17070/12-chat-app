@@ -1,0 +1,13 @@
+extends layouts/base.pug
+block content
+  div(class="uk-container uk-width-1-1 uk-padding-remove uk-margin-remove")
+    div(class="userdata uk-text-center")
+      span(class="uk-margin-small-right" uk-icon="user")
+      span(id="username")
+    div(class="uk-width-1-1 uk-margin-large-top uk-align-center uk-text-break uk-padding")
+      h2 Tus Cookies son
+      a(href="/logout") Logout
+      br
+      span(id="cookies" class="")
+block scripts
+  script(src="/static/js/cookie.js")

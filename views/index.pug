@@ -1,0 +1,16 @@
+extends layouts/base.pug
+block content
+  div(id="modal-full" class="uk-modal-full" uk-modal)
+    div(class="uk-modal-dialog")
+      div(class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid)
+        div(class="uk-background-cover" style="background-color: #c5ddeb" uk-height-viewport)
+        div(class="uk-padding-large")
+          h1 Chat
+          p Hola!, bienvenido a la aplicacion de chat. Ingresa tu nombre
+          form(class="uk-margin", method="post", action="/register")
+            input(id="input-email" name="email", class="uk-input" type="text" placeholder="Email")
+            input(id="input-name" name="name" class="uk-input uk-margin-small-top" type="text" placeholder="Nombre")
+            button(id="enter-btn" type="submit" class="uk-button uk-button-default uk-margin-small-top") Entrar
+
+block scripts
+  script(src="/static/js/index.js")

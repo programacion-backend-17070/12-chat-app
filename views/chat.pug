@@ -1,0 +1,22 @@
+extends layouts/base.pug
+block content
+  div(id="chat-container" class="uk-container uk-width-1-1 uk-padding-remove uk-margin-remove")
+    div(class="userdata uk-text-center")
+      span(class="uk-margin-small-right" uk-icon="user")
+      span(id="username")
+    div(class="chat_body uk-width-1-1")
+      div(class="chat_names")
+        div(class="title uk-text-bold") People
+        ul(id="user-list" class="name-list")
+        div(class="title uk-text-bold") Groups
+        ul(id="group-list" class="group-list")
+      div(class="chat_messages")
+        div(class="chat_messages-wrapper")
+          div(class="message-header")
+            span(class="chat-with") Chat with Eduardo
+          div(id="message-pool" class="messages")
+          div(class="controls")
+            input(id="message-input" placeholder="Enter message")
+            button(id="send-btn" class="uk-button uk-button-default") Enviar
+block scripts
+  script(src="/static/js/chat.js")

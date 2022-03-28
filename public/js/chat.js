@@ -1,11 +1,10 @@
 // obtenemos todos los elementos de la UI que vamos a manipular
-const modalEl = document.getElementById("modal-full")
+
 const inputNameEl = document.getElementById("input-name")
 const inputEmailEl = document.getElementById("input-email")
 const chatContainerEl = document.getElementById("chat-container")
 const messageInput = document.getElementById("message-input")
 const sendBtn = document.getElementById("send-btn")
-const enterBtn = document.getElementById("enter-btn")
 const msgPool = document.getElementById("message-pool")
 const usrList = document.getElementById("user-list")
 const groupList = document.getElementById("group-list")
@@ -15,7 +14,7 @@ const users = []
 
 // Utilizamos el modal de UI para iniciar 
 // el usuario debe de ingresar su nombre para poder utilizarlo
-UIkit.modal(modalEl).show();
+
 
 // escuchar el evento cuando el modal se cierra y ejecutar la logica inicial
 UIkit.util.on("#modal-full", "hidden", () => {
@@ -88,19 +87,19 @@ sendBtn.addEventListener("click", (e) => {
 })
 
 // callback para saber cuando el usuario ha ingresado su nombre y cerrar el modal
-enterBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const email = inputEmailEl.value
-  const name = inputNameEl.value
-  if (!email || !name) {
-    return
-  }
+// enterBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const email = inputEmailEl.value
+//   const name = inputNameEl.value
+//   if (!email || !name) {
+//     return
+//   }
 
-  user.name = name
-  user.email = email
-  console.log(user)
-  UIkit.modal(modalEl).hide();
-})
+//   user.name = name
+//   user.email = email
+//   console.log(user)
+//   UIkit.modal(modalEl).hide();
+// })
 
 // rendizar un mensaje
 // distinguiendo entre mensaje enviado o mensaje recibido
