@@ -2,10 +2,11 @@
 const { Router } = require('express');
 const auth = require("../middlewares/auth")
 const historial = require("../middlewares/historial")
+const loggedIn = require("../middlewares/loggedIn")
 
 const router = new Router();
 
-router.get("/", (req, res) => res.render("index"))
+router.get("/", loggedIn, (req, res) => res.render("index"))
 
 // crear las vistas de /register y /cookie
 
