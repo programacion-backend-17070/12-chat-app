@@ -2,10 +2,11 @@
 const { Router } = require('express');
 const auth = require("../middlewares/auth")
 const historial = require("../middlewares/historial")
+const isLogged = require("../middlewares/isLogged")
 
 const router = new Router();
 
-router.get("/", (req, res) => res.render("index"))
+router.get("/", isLogged, (req, res) => res.render("index"))
 
 // crear las vistas de /register y /cookie
 
@@ -40,7 +41,19 @@ router.get("/cookie", auth, historial, (req, res) => {
   res.render("cookie")
 })
 
+router.get("/bye", (req, res) => {
+  res.render("bye")
+})
+
+router.get("/chat", auth, historial, (req, res) => {
+  // console.log(req.cookies) // cookies no firmadas
+  // console.log(req.signedCookies) // cookies firmadas
+  console.log(req.session)
+  res.render("chat")
+})
+
 router.get("/logout", (req, res) => {
+  const nombre = ""
   req.session.destroy((err) => {
     if (err) {
       return res.redirect("/?error=" + err)
@@ -50,7 +63,7 @@ router.get("/logout", (req, res) => {
     // res.clearCookie("nombre")
     // res.clearCookie("server")
 
-    res.redirect("/")
+    res.redirect("/bye?name=" + nombew)
 
   })
 })

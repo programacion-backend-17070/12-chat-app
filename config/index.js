@@ -6,5 +6,8 @@ module.exports = {
     PASSWORD: process.env.MONGO_PASSWORD,
     DATABASE: "chat",
     OPTIONS: "retryWrites=true&w=majority"
+  },
+  redisConfig: {
+    PASSWORD: process.env.REDIS_PASSWORD
   }
 }
