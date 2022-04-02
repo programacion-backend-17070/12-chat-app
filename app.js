@@ -53,23 +53,11 @@
       resave: true,
       saveUninitialized: true,
 
-      // store: new FileStore({
-      //   path: path.join(__dirname, "./sesion"),
-      //   ttl: 60,
-      //   reapInterval: 60,
-      //   retries: 0
-      // })
-
-      // store: new RedisStore({
-      //   client: redisClient,
-      //   ttl: 10
-      // })
-
       store: new MongoStore({
         mongoUrl: `${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`,
-        expires: 1000 * 30,
-        autoRemove: "interval",
-        autoRemoveInterval: 10
+        ttl: 1 * 60,
+        expires: 1000 * 1 * 60,
+        autoRemove: "native"
       })
     })) // req.session
     app.use("/static", express.static(path.join(__dirname, 'public')))
