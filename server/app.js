@@ -53,12 +53,12 @@
       resave: true,
       saveUninitialized: true,
 
-      store: new MongoStore({
-        mongoUrl: `${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`,
-        ttl: 1 * 60,
-        expires: 1000 * 1 * 60,
-        autoRemove: "native"
-      })
+      // store: new MongoStore({
+      //   mongoUrl: `${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`,
+      //   ttl: 1 * 60,
+      //   expires: 1000 * 1 * 60,
+      //   autoRemove: "native"
+      // })
     })) // req.session
     app.use("/static", express.static(path.join(__dirname, 'public')))
 
