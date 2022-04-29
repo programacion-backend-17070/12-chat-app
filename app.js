@@ -1,4 +1,4 @@
-(async () => {
+module.exports = (async () => {
   const express = require('express');
   const path = require('path')
   const http = require('http')
@@ -24,7 +24,7 @@
   const io = new Server(server)
 
   try {
-    // await mongoose.connect(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS} `)
+    await mongoose.connect(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS} `)
 
     // redis
     // setear el cliente de redis
@@ -66,7 +66,8 @@
     app.use("/api", apiRouter)
 
     io.on("connection", chat)
-    server.listen(8080, () => console.log(`listening on http://localhost:8080`))
+    // server.listen(8080, () => console.log(`listening on http://localhost:8080`))
+    return server
   } catch (e) {
     console.log("Error", e)
   }
