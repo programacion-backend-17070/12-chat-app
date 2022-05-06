@@ -25,8 +25,9 @@ module.exports = (async () => {
 
   const PORT = process.env.PORT || 8080
   try {
-    await mongoose.connect(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS} `)
+    await mongoose.connect(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`)
 
+    console.log(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`)
     // redis
     // setear el cliente de redis
     // que va a ocupar el Store
