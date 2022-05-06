@@ -23,6 +23,7 @@ module.exports = (async () => {
   const server = http.createServer(app)
   const io = new Server(server)
 
+  const PORT = process.env.PORT || 8080
   try {
     await mongoose.connect(`${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS} `)
 
@@ -66,7 +67,7 @@ module.exports = (async () => {
     app.use("/api", apiRouter)
 
     io.on("connection", chat)
-    // server.listen(8080, () => console.log(`listening on http://localhost:8080`))
+    server.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`))
     return server
   } catch (e) {
     console.log("Error", e)
